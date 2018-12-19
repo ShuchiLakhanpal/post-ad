@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="upload_advertisment_testcases.CheckLogInTest"/>
+      <class name="upload_advertisment_testcases.UserHomePageTest"/>
+      <class name="upload_advertisment_testcases.LogInPageTest"/>
+      <class name="upload_advertisment_testcases.CAndLTest"/>
+     <!-- <class name="upload_advertisment_testcases.CancelPayment"/>-->
+      <class name="upload_advertisment_testcases.AdDetailsTest"/> 
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

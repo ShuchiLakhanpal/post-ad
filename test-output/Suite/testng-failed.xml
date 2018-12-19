@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <test name="Test(failed)">
+    <classes>
+      <class name="upload_advertisment_testcases.CheckLogInTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="clickSignInBtn"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- upload_advertisment_testcases.CheckLogInTest -->
+      <class name="upload_advertisment_testcases.UserHomePageTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- upload_advertisment_testcases.UserHomePageTest -->
+      <class name="upload_advertisment_testcases.CAndLTest">
+        <methods>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- upload_advertisment_testcases.CAndLTest -->
+      <class name="upload_advertisment_testcases.LogInPageTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- upload_advertisment_testcases.LogInPageTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

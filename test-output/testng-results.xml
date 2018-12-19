@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="57765" started-at="2018-12-19T07:44:30Z" finished-at="2018-12-19T07:45:28Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="57765" started-at="2018-12-19T07:44:30Z" finished-at="2018-12-19T07:45:28Z">
+      <class name="upload_advertisment_testcases.AdDetailsTest">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@548a9f61]" name="setUp" is-config="true" duration-ms="29828" started-at="2018-12-19T02:44:30Z" finished-at="2018-12-19T02:45:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="clickFreeRadioBtn(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@548a9f61]" name="clickFreeRadioBtn" duration-ms="27570" started-at="2018-12-19T02:45:00Z" data-provider="fillFields" finished-at="2018-12-19T02:45:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Start Your IT Career as QA Automation Engineer ]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[**** No IT Background required, start your first job in IT*** 
+**** Specialized for College/University grads *****
+
+<-- EARN 70-90 K as QA Automation Developer --> 
+<-- We refund your fees if you are not satisfied with quality of program anytime in first month -->
+
+WHY THIS PROGRAM 
+We are not programming teachers, we are actual developers with deep dive knowledge of domain while working in industry. Since IT is one of the fastest growing careers in today’s economy.
+PRAGRA programs were designed to help learners develop the skills and professional network needed to capitalize on the demand for 182,000 ICT workers in Canada by 2019, with ICTC predicting
+that the most in-demand roles will include computer programmers, QA Automation Developer, database analysts and web developers.
+
+FEATURES 
+Java Programming, Maven, TestNG, Selenium, Web Services (SOAP UI, WSDL, Rest Services, Groovy), Git, CI/CD, Cloud Services (AWS, Docker, Kubernetes), MySQL Queries and Databases, Putty,
+SOAPUI, POSTMAN and More
+
+BENEFITS 
+Benefit from a wide range of career services to position you for success through graduation and beyond. Part Time Study, weekend in person + weekday online classes, while maintaining 
+your work schedule. 
+
+CAREER SERVICES 
+Co-Op Trainings and Certification, Resume Creation, Professional refernces TD, RBC, Rogers, BMO, GAP, Bell, Telus etc and highlighting your skills. Creation of portfolio of developer/QA automation developer 
+to showcase your knowledge. One to One assistance for interview preparations. 
+
+**The material covered in this program is subject to change due to market demand. 
+
+RESULTS 
+Other people success story is never a guarantee of your success. The results you achieve are in direct proportion to efforts we apply together everyday. Transform Career, Transform Life. 
+
+Link: https://pragra.co/learning/automation 
+
+INFO: This program is offered by highly qualified consultants of PRAGRA: https://www.pragra.co, 
+
+Contact the team for detailed curriculum at: (647)-343-5453, training@pragra.co 
+
+Other Programs with us: Machine Learning BigData, Microsoft Azure, AWS Solutions, Selenium, Automation Testing, DWH, DevOps, System Admin, Agile Business Analyst, QA, Scrum Master etc.
+
+Keywords: IT Jobs, Jobs, IT trainings, IT Training, Computer training Programs, Free programs, Free training , Free Learning, Selenium, Automation QA Testing Training Automation Training 
+
+TRANSFORM CAREER TRANSFORM LIFE]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[ L5M]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clickFreeRadioBtn -->
+      </class> <!-- upload_advertisment_testcases.AdDetailsTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
