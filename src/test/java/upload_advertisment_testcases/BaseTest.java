@@ -16,7 +16,7 @@ import upload_advertisment_drivermanager.DriverManager;
 public class BaseTest {
 
 	public static WebDriver driver;
-
+	
 	public static void initialSetUp() {
 		driver = DriverManager.getInstance();
 		driver.manage().window().maximize();

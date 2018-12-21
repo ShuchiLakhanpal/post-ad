@@ -40,7 +40,7 @@ public class AdDetailsTest extends BaseTest {
 		cancelPayment = new CancelPaymentPage();
 	}
 
-	@Test(priority = 1, dataProvider = "fillFields")
+	@Test(dataProvider = "fillFields")
 	public void clickFreeRadioBtn(String getTitle, String getDescription, String getCode) throws InterruptedException {
 		boolean verifyBtn = adDetails.clickRadioBtn();
 		Assert.assertTrue(verifyBtn, "Btn Match");

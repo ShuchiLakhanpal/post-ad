@@ -15,6 +15,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import upload_advertisment_config.DriverConfig;
+import upload_advertisment_config.SelectorsData;
+
 public class ExcelReader {
 
 	private List<Object[]> testData;
@@ -28,8 +31,14 @@ public class ExcelReader {
 		try {
 			FileInputStream inputFile = new FileInputStream(new File(fileName));
 			Workbook wb = new XSSFWorkbook(inputFile);
-			//Sheet dataSheet = wb.getSheet("BA");
-			Sheet dataSheet = wb.getSheet("QA");
+			// Sheet dataSheet = wb.getSheet("BA");
+			Sheet dataSheet = null;
+			
+			if (SelectorsData.getProperty("courseSelection").equalsIgnoreCase("BA")) {
+				dataSheet = wb.getSheet("BA");
+			} else if (SelectorsData.getProperty("courseSelection").equalsIgnoreCase("QA")) {
+				dataSheet = wb.getSheet("QA");
+			}
 			Iterator<Row> getRow = dataSheet.iterator();
 
 			getRow.next();
@@ -37,7 +46,7 @@ public class ExcelReader {
 				Row getCurrentRow = getRow.next();
 				Iterator<Cell> cells = getCurrentRow.iterator();
 				List<String> dataCell = new ArrayList<>();
-				 System.out.println(getCurrentRow.getLastCellNum());
+				System.out.println(getCurrentRow.getLastCellNum());
 				while (cells.hasNext()) {
 					Cell currentCell = cells.next();
 					// CellType type = currentCell.getCellTypeEnum();

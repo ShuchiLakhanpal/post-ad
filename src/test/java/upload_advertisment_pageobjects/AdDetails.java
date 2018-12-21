@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -15,7 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import upload_advertisment_config.DriverConfig;
+import upload_advertisment_config.SelectorsData;
 import upload_advertisment_testcases.BaseTest;
 
 public class AdDetails extends BaseTest {
@@ -83,11 +82,11 @@ public class AdDetails extends BaseTest {
 			System.out.println(uploadImgs.isDisplayed());
 			((JavascriptExecutor) driver).executeScript("scroll(0,550);");
 			// Thread.sleep(3000);
-			if(DriverConfig.getProperty("course").equalsIgnoreCase("QA")) {
-				String imgPath = DriverConfig.getProperty("qaImg");
+			if(SelectorsData.getProperty("courseSelection").equalsIgnoreCase("QA")) {
+				String imgPath = SelectorsData.getProperty("qaImg");
 			    uploadImgs.sendKeys(imgPath);
-			}else if(DriverConfig.getProperty("courseBA").equalsIgnoreCase("BA")) {
-				String imgPath = DriverConfig.getProperty("baImg");
+			}else if(SelectorsData.getProperty("courseSelection").equalsIgnoreCase("BA")) {
+				String imgPath = SelectorsData.getProperty("baImg");
 			    uploadImgs.sendKeys(imgPath);
 			}
 			Thread.sleep(3000);
@@ -118,30 +117,30 @@ public class AdDetails extends BaseTest {
 			this.code.sendKeys(code);
 
 			if (code.equalsIgnoreCase("L5M")) {
-				String getLocation = DriverConfig.getProperty("mississaugaLocation");
+				String getLocation = SelectorsData.getProperty("mississaugaLocation");
 				this.code.clear();
 				this.code.sendKeys(getLocation);
 			} else if (code.equalsIgnoreCase("L6S")) {
-				String getLocation = DriverConfig.getProperty("bramptonLocation");
+				String getLocation = SelectorsData.getProperty("bramptonLocation");
 				this.code.clear();
 				this.code.sendKeys(getLocation);
 			}
 		} else if (driver.findElement(By.xpath("//h3[text() = 'Location']")).isDisplayed()) {
 			js.executeScript("scroll(0, 1100);");
 			if (code.equalsIgnoreCase("L5M")) {
-				String getLocation = DriverConfig.getProperty("mississaugaLocation");
+				String getLocation = SelectorsData.getProperty("mississaugaLocation");
 				this.code.clear();
 				this.code.sendKeys(getLocation);
 				WebDriverWait wait = new WebDriverWait(driver, 5000);
 				WebElement locationDisplay = driver.findElement(By.xpath("//textarea[@name='location']"));
-				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,DriverConfig.getProperty("mississaugaLocation")));
+				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,SelectorsData.getProperty("mississaugaLocation")));
 			} else if (code.equalsIgnoreCase("L6S")) {
-				String getLocation = DriverConfig.getProperty("bramptonLocation");
+				String getLocation = SelectorsData.getProperty("bramptonLocation");
 				this.code.clear();
 				this.code.sendKeys(getLocation);
 				WebDriverWait wait = new WebDriverWait(driver, 5000);
 				WebElement locationDisplay = driver.findElement(By.xpath("//textarea[@name='location']"));
-				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,DriverConfig.getProperty("bramptonLocation")));
+				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,SelectorsData.getProperty("bramptonLocation")));
 			}
 		}
 

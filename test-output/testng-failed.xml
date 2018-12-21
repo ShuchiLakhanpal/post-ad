@@ -5,8 +5,8 @@
     <classes>
       <class name="upload_advertisment_testcases.AdDetailsTest">
         <methods>
-          <include name="clickFreeRadioBtn" invocation-numbers="0"/>
-          <include name="setUp"/>
+          <include name="clickFreeRadioBtn"/>
+          <include name="tearDown"/>
         </methods>
       </class> <!-- upload_advertisment_testcases.AdDetailsTest -->
     </classes>
