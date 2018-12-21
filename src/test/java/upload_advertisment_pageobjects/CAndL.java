@@ -21,15 +21,16 @@ public class CAndL extends BaseTest{
 	public AdDetails getDetailsPage() {
 		
 		if(postAd.isDisplayed()) {
-			WebDriverWait wait = new WebDriverWait(driver, 20);
-			wait.until(ExpectedConditions.elementToBeClickable(postAd));
-			postAd.click();
+			//WebDriverWait wait = new WebDriverWait(driver, 20);
+			//wait.until(ExpectedConditions.elementToBeClickable(postAd));
+			driver.navigate().to("https://www.kijiji.ca/p-post-ad.html?categoryId=4");
+			//postAd.click();
 			
 		}else if(driver.findElement(By.xpath("//div[contains(text(), 'Add a profile photo to help bring the Kijji community together!')]")).isDisplayed()){
 			driver.findElement(By.xpath("//button[contains(text(), 'Later')]")).click();
 			WebDriverWait wait = new WebDriverWait(driver, 20);
-		wait.until(ExpectedConditions.elementToBeClickable(postAd));
-		postAd.click();
+			wait.until(ExpectedConditions.elementToBeClickable(postAd));
+			postAd.click();
 		
 		}
 		return new AdDetails();

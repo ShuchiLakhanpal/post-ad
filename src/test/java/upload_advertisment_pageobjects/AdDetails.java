@@ -15,53 +15,55 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import upload_advertisment_config.DriverConfig;
 import upload_advertisment_testcases.BaseTest;
 
 public class AdDetails extends BaseTest {
 
 	JavascriptExecutor js = (JavascriptExecutor) driver;
-	
+
 	@FindBy(how = How.XPATH, using = "//div//span[@class='radio-label']")
 	List<WebElement> radioBtnFree;
-	/* @FindBy(xpath="//label//span[@class = 'radio-label' and text()= 'Free']")
-	 WebElement radioBtnFree;
-*/
+	/*
+	 * @FindBy(xpath="//label//span[@class = 'radio-label' and text()= 'Free']")
+	 * WebElement radioBtnFree;
+	 */
 	@FindBy(how = How.XPATH, using = "//div//input[@type='file']")
 	WebElement uploadImgs;
-	
-	@FindBy(how = How.ID, using="postad-title" )
+
+	@FindBy(how = How.ID, using = "postad-title")
 	WebElement title;
-	
-	
-	@FindBy(how = How.ID, using= "pstad-descrptn")
+
+	@FindBy(how = How.ID, using = "pstad-descrptn")
 	WebElement description;
-	
-	
+
 	@FindBy(xpath = "//textarea[@id='location']")
 	WebElement code;
-	
-	@FindBy(css =".day-selector.calculate-total")
+
+	@FindBy(css = ".day-selector.calculate-total")
 	WebElement dropDown;
-	
+
 	@FindBy(xpath = "//button[@type='submit']")
 	WebElement postAd;
-	
+
+	@FindBy(xpath = "//a[@class='cancel']")
+	WebElement cancelPayment;
+
 	public AdDetails() {
 		PageFactory.initElements(driver, this);
 	}
 
-	public boolean clickRadioBtn()  {
+	public boolean clickRadioBtn() {
 		radioBtnFree = new ArrayList();
 		radioBtnFree = driver.findElements(By.xpath("//div//span[@class='radio-label']"));
-		System.out.println(radioBtnFree.size());
+		//System.out.println(radioBtnFree.size());
 		WebElement free = null;
 		boolean checkLabel;
-		for (WebElement getRadio : radioBtnFree) {		
-			//System.out.println(getRadio.getText());
-				if (getRadio.getText().equals("Please Contact")) {
-					if(!(getRadio.isSelected())) {
-					System.out.println("clicked");
-					//getRadio.click();
+		for (WebElement getRadio : radioBtnFree) {
+			// System.out.println(getRadio.getText());
+			if (getRadio.getText().equals("Please Contact")) {
+				if (!(getRadio.isSelected())) {
+					//System.out.println("clicked");
 					free = driver.findElement(By.xpath("//div//span[@class='radio-label'and text()='Please Contact']"));
 					WebDriverWait checkBtnClicked = new WebDriverWait(driver, 2000);
 					getRadio.click();
@@ -69,69 +71,108 @@ public class AdDetails extends BaseTest {
 					break;
 				}
 			}
-				
+
 		}
 		checkLabel = free.isDisplayed();
-		return checkLabel; 
-}
+		return checkLabel;
+	}
 
-	public String uploadImage() throws InterruptedException  {
-		int x =uploadImgs.getLocation().getX();
-		if(x != 0) {
+	public String uploadImage() throws InterruptedException {
+		int x = uploadImgs.getLocation().getX();
+		if (x != 0) {
 			System.out.println(uploadImgs.isDisplayed());
 			((JavascriptExecutor) driver).executeScript("scroll(0,550);");
-			//Thread.sleep(3000);
-			String imgPath = "C:\\Users\\shuchi\\Desktop\\kijiji_automation\\Ad Images\\www.PRAGRA.co.png";
-			uploadImgs.sendKeys(imgPath);
+			// Thread.sleep(3000);
+			if(DriverConfig.getProperty("course").equalsIgnoreCase("QA")) {
+				String imgPath = DriverConfig.getProperty("qaImg");
+			    uploadImgs.sendKeys(imgPath);
+			}else if(DriverConfig.getProperty("courseBA").equalsIgnoreCase("BA")) {
+				String imgPath = DriverConfig.getProperty("baImg");
+			    uploadImgs.sendKeys(imgPath);
+			}
 			Thread.sleep(3000);
 		}
-		WebElement imgUploaded = driver.findElement(By.xpath("//li[@class= 'thumbnail selected']//div[@class='image' ]"));
+		WebElement imgUploaded = driver
+				.findElement(By.xpath("//li[@class= 'thumbnail selected']//div[@class='image' ]"));
 		String checkImg = imgUploaded.getAttribute("class");
-		System.out.println(checkImg);	
+		//System.out.println(checkImg);
 		return checkImg;
 	}
-	
-	public void detailsToEnter(String title, String description, String code) throws InterruptedException  {
+
+	public void detailsToEnter(String title, String description, String code) throws InterruptedException {
 		this.title.sendKeys(title);
 		this.description.sendKeys(description);
-		Thread.sleep(2000);
-		if(!driver.findElement(By.xpath("//select[@name = 'postingLocation']")).isDisplayed()) {
-			int xCode =this.code.getLocation().getX();
-			js.executeScript("scroll(0, 1000);");
+		//Thread.sleep(2000);
+		boolean checkPath = false;
+		try {
+			if (checkPath = driver.findElement(By.xpath("//select[@name = 'postingLocation']")).isDisplayed()) {
+				checkPath = true;
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		if (checkPath == true) {
+			js.executeScript("scroll(0, 1100);");
+			driver.findElement(By.xpath("//button[text()='Change']")).click();
+			this.code.clear();
 			this.code.sendKeys(code);
-			driver.findElement(By.xpath("//div[@class='autocompleteSuggestions-3802522726']//div[text()='Mississauga, ON L5M']")).click();
-			System.out.println(xCode);
-		}else {
-			clickCheckBox();
+
+			if (code.equalsIgnoreCase("L5M")) {
+				String getLocation = DriverConfig.getProperty("mississaugaLocation");
+				this.code.clear();
+				this.code.sendKeys(getLocation);
+			} else if (code.equalsIgnoreCase("L6S")) {
+				String getLocation = DriverConfig.getProperty("bramptonLocation");
+				this.code.clear();
+				this.code.sendKeys(getLocation);
+			}
+		} else if (driver.findElement(By.xpath("//h3[text() = 'Location']")).isDisplayed()) {
+			js.executeScript("scroll(0, 1100);");
+			if (code.equalsIgnoreCase("L5M")) {
+				String getLocation = DriverConfig.getProperty("mississaugaLocation");
+				this.code.clear();
+				this.code.sendKeys(getLocation);
+				WebDriverWait wait = new WebDriverWait(driver, 5000);
+				WebElement locationDisplay = driver.findElement(By.xpath("//textarea[@name='location']"));
+				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,DriverConfig.getProperty("mississaugaLocation")));
+			} else if (code.equalsIgnoreCase("L6S")) {
+				String getLocation = DriverConfig.getProperty("bramptonLocation");
+				this.code.clear();
+				this.code.sendKeys(getLocation);
+				WebDriverWait wait = new WebDriverWait(driver, 5000);
+				WebElement locationDisplay = driver.findElement(By.xpath("//textarea[@name='location']"));
+				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,DriverConfig.getProperty("bramptonLocation")));
+			}
 		}
 
 	}
-	
+
 	public void clickCheckBox() {
-		//JavascriptExecutor js = (JavascriptExecutor) driver;
+		// JavascriptExecutor js = (JavascriptExecutor) driver;
 		WebElement topAdCheck = driver.findElement(By.xpath("//label[@for='TopAdInPromoteMyAds']"));
-		js.executeScript("arguments[0].scrollIntoView()",topAdCheck);
-				if(topAdCheck.isDisplayed()) {
-					topAdCheck.click();
-					selectDays();
-				}
-		// }
+		js.executeScript("arguments[0].scrollIntoView()", topAdCheck);
+		if (topAdCheck.isDisplayed()) {
+			topAdCheck.click();
+		}
 	}
-	
+
 	public void selectDays() {
 		Select numDays = new Select(dropDown);
-		System.out.println(dropDown.getTagName());
+		// System.out.println(dropDown.getTagName());
 		numDays.selectByVisibleText("3 days");
 	}
-	
+
 	public CancelPaymentPage clickPostAd() {
 		int x = postAd.getLocation().getX();
-		if(x != 0) {
+		if (x != 0) {
 			postAd.click();
 		}
 		return new CancelPaymentPage();
 	}
-		
+
+	/*
+	 * public DisplayAd adPublished() { //cancelPayment.click(); return new
+	 * DisplayAd(); }
+	 */
+
 }
-	
-	

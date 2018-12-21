@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import upload_advertisment_testcases.BaseTest;
 
 public class UserHomePage extends BaseTest {
-	@FindBy(xpath = "//div//a//div[contains(., 'Sharma')]")
+	@FindBy(xpath = "//div[@class='root-2243122828']//button//div[@class='root-46216517 color-blue-2052828905 avatar-26778576']")
 	WebElement userName;
 
 	@FindBy(how = How.ID, using = "cat-menu-item-1")
@@ -28,8 +28,20 @@ public class UserHomePage extends BaseTest {
 	}
 
 	public CAndL openClasses() {
-		communityLink.click();
-		driver.findElement(By.cssSelector("div#cat-menu-group-1 > ul.menuListL2-1858403043 > li:nth-child(4) > a")).click();
+		boolean checkLinkVisible = false;
+		try {
+			if(checkLinkVisible = communityLink.isDisplayed()) {
+				communityLink.click();
+				driver.findElement(By.cssSelector("div#cat-menu-group-1 > ul.menuListL2-1858403043 > li:nth-child(4) > a")).click();
+				checkLinkVisible = true;
+			}
+		}catch(Exception e) {
+			e.getMessage();
+		}
+		if(checkLinkVisible = true) {
+			driver.navigate().to("https://www.kijiji.ca/b-classes-lessons/mississauga-peel-region/c4l1700276");
+		}
+		
 		return new CAndL();
 	}
 

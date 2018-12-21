@@ -17,49 +17,38 @@ import upload_advertisment_pageobjects.LogInPage;
 import upload_advertisment_pageobjects.CAndL;
 import upload_advertisment_pageobjects.CheckLogIn;
 
-public class UserHomePageTest extends BaseTest{
+public class UserHomePageTest extends BaseTest {
 	CheckLogIn openLogIn;
 	LogInPage logInPage;
 	UserHomePage homePage;
 	CAndL cAndL;
-	
-	
+
 	@BeforeMethod
 	public void setUp() {
-		 initialSetUp();
-		 openLogIn = new CheckLogIn();
-		 //logInPage = new LogInPage();
-		 logInPage = openLogIn.logInPage();
-//		 logInPage = new LogInPage();
-		 homePage = logInPage.userDetails(DataConfig.getDataProp("email"), DataConfig.getDataProp("password")); 
-		 cAndL = new CAndL();
+		initialSetUp();
+		openLogIn = new CheckLogIn();
+		logInPage = openLogIn.logInPage();
+		homePage = logInPage.userDetails(DataConfig.getDataProp("email"), DataConfig.getDataProp("password"));
+		cAndL = new CAndL();
 	}
-	
 
-	@Test(priority=1)
+	@Test(priority = 1)
 	public void checkUserName() {
 		Assert.assertTrue(homePage.getUserName(), "Correct username not displayed");
-		System.out.println("passed First run");
+		//System.out.println("passed First run");
 	}
-	
+
 	@Test(priority = 2)
 	public void clickClasses() {
 		homePage.openClasses();
 		String getTextClasses = "Classes & Lessons in Mississauga / Peel Region";
-		//WebDriverWait wait = new WebDriverWait(driver, 20);
-		//wait.until(ExpectedConditions.textToBePresentInElement(driver.findElement(By.cssSelector("div.breadcrumb > span >h1")), getTextClasses));
-		//WebElement isVisible = driver.findElement(By.cssSelector("div.breadcrumb > span >h1"));
-		//System.out.println(driver.findElement(By.cssSelector("div.breadcrumb > span >h1")).getText().equals(getTextClasses));
 		String actual = driver.findElement(By.cssSelector("div.breadcrumb > span >h1")).getText();
 		Assert.assertEquals(actual, getTextClasses, "Incorrect Page displayed");
-		System.out.println("Classes and Lessons text page displayed: " + actual);
+		//System.out.println("Classes and Lessons text page displayed: " + actual);
 	}
-	
-	@AfterTest 
-	 public void tearDown() {
-		 driver.quit();
-	 }
+
+	@AfterTest
+	public void tearDown() {
+		driver.quit();
+	}
 }
-
-
-

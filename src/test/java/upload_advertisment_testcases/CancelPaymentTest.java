@@ -1,5 +1,6 @@
 package upload_advertisment_testcases;
 
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -12,8 +13,8 @@ import upload_advertisment_pageobjects.CheckLogIn;
 import upload_advertisment_pageobjects.LogInPage;
 import upload_advertisment_pageobjects.UserHomePage;
 
-public class CancelPaymentTest extends BaseTest{
-	
+public class CancelPaymentTest extends BaseTest {
+
 	CheckLogIn openLogIn;
 	LogInPage logInPage;
 	UserHomePage homePage;
@@ -21,24 +22,31 @@ public class CancelPaymentTest extends BaseTest{
 	AdDetails adDetails;
 	ExcelReader reader;
 	CancelPaymentPage cancelPaymentPage;
-	
+
 	@BeforeMethod
 	public void setUp() {
-			 initialSetUp();
-			 openLogIn = new CheckLogIn();
-			 logInPage = openLogIn.logInPage();
-			 homePage = logInPage.userDetails(DataConfig.getDataProp("email"), DataConfig.getDataProp("password")); 
-			 cAndL = new CAndL();
-			 cAndL = homePage.openClasses();
-			 adDetails = cAndL.getDetailsPage();
-			 adDetails = new AdDetails();
-			 cancelPaymentPage = adDetails.clickPostAd();
-			 cancelPaymentPage = new CancelPaymentPage();
+		initialSetUp();
+		openLogIn = new CheckLogIn();
+		logInPage = openLogIn.logInPage();
+		homePage = logInPage.userDetails(DataConfig.getDataProp("email"), DataConfig.getDataProp("password"));
+		cAndL = new CAndL();
+		cAndL = homePage.openClasses();
+		adDetails = cAndL.getDetailsPage();
+		adDetails = new AdDetails();
+		cancelPaymentPage = new CancelPaymentPage();
+
 	}
-	
-	@Test
+
+	@Test(enabled = false)
 	public void cancelPaymentTest() {
 		cancelPaymentPage.adPublished();
+		System.out.println("cancelpayment test");
+	}
+
+	@AfterTest
+	public void tearDown() {
+
+		driver.quit();
 	}
 
 }

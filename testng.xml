@@ -3,11 +3,11 @@
 <suite name="Suite">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="upload_advertisment_testcases.CheckLogInTest"/>
+     <!--  <class name="upload_advertisment_testcases.CheckLogInTest"/>
       <class name="upload_advertisment_testcases.UserHomePageTest"/>
-      <class name="upload_advertisment_testcases.LogInPageTest"/>
+     <!-- <class name="upload_advertisment_testcases.LogInPageTest"/>
       <class name="upload_advertisment_testcases.CAndLTest"/>
-     <!-- <class name="upload_advertisment_testcases.CancelPayment"/>-->
+      <class name="upload_advertisment_testcases.CancelPayment"/>-->
       <class name="upload_advertisment_testcases.AdDetailsTest"/> 
     </classes>
   </test> <!-- Test -->

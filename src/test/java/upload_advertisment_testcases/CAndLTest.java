@@ -26,9 +26,7 @@ public class CAndLTest extends BaseTest{
 	public void setUp() {
 			 initialSetUp();
 			 openLogIn = new CheckLogIn();
-			 //logInPage = new LogInPage();
 			 logInPage = openLogIn.logInPage();
-	//		 logInPage = new LogInPage();
 			 homePage = logInPage.userDetails(DataConfig.getDataProp("email"), DataConfig.getDataProp("password")); 
 			 cAndL = new CAndL();
 			 cAndL = homePage.openClasses();

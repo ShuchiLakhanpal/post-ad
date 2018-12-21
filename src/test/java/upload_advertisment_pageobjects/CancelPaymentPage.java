@@ -6,18 +6,19 @@ import org.openqa.selenium.support.PageFactory;
 
 import upload_advertisment_testcases.BaseTest;
 
-public class CancelPaymentPage extends BaseTest{
-	
+public class CancelPaymentPage extends BaseTest {
+
 	@FindBy(xpath = "//a[@class='cancel']")
 	WebElement cancelPayment;
-	
+
 	public CancelPaymentPage() {
-		PageFactory.initElements(driver,this);
+		PageFactory.initElements(driver, this);
 	}
-	
-	public  AdDetails adPublished() {
+
+	public DisplayAd adPublished() {
 		cancelPayment.click();
-		return new AdDetails();
+		System.out.println("cancelPayment is working");
+		return new DisplayAd();
 	}
 
 }
