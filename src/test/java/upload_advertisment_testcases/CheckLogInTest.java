@@ -35,7 +35,7 @@ public class CheckLogInTest extends BaseTest{
 		 logInPage = openLogIn.logInPage();
 		 String expectedUrl = "https://www.kijiji.ca/t-login.html";
 		 Assert.assertEquals(driver.getCurrentUrl(),expectedUrl, "Incorrect title");
-		 //System.out.println(driver.getCurrentUrl()+ "srun");
+	
 	 }
 	
 	 @AfterTest

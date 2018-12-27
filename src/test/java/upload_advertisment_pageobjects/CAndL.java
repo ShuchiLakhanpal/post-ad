@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import upload_advertisment_config.SelectorsData;
 import upload_advertisment_testcases.BaseTest;
 
 public class CAndL extends BaseTest{
@@ -23,7 +24,7 @@ public class CAndL extends BaseTest{
 		if(postAd.isDisplayed()) {
 			//WebDriverWait wait = new WebDriverWait(driver, 20);
 			//wait.until(ExpectedConditions.elementToBeClickable(postAd));
-			driver.navigate().to("https://www.kijiji.ca/p-post-ad.html?categoryId=4");
+			driver.navigate().to("https://www.kijiji.ca/"+ SelectorsData.getProperty("adDetailsPage"));
 			//postAd.click();
 			
 		}else if(driver.findElement(By.xpath("//div[contains(text(), 'Add a profile photo to help bring the Kijji community together!')]")).isDisplayed()){

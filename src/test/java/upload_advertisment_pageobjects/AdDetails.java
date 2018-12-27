@@ -1,7 +1,6 @@
 package upload_advertisment_pageobjects;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -15,11 +14,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import upload_advertisment_config.SelectorsData;
+import upload_advertisment_excelreader.ExcelReader;
 import upload_advertisment_testcases.BaseTest;
 
 public class AdDetails extends BaseTest {
 
 	JavascriptExecutor js = (JavascriptExecutor) driver;
+	static ExcelReader reader;
 
 	@FindBy(how = How.XPATH, using = "//div//span[@class='radio-label']")
 	List<WebElement> radioBtnFree;
@@ -48,6 +49,8 @@ public class AdDetails extends BaseTest {
 	@FindBy(xpath = "//a[@class='cancel']")
 	WebElement cancelPayment;
 
+	private int currentSheet;
+
 	public AdDetails() {
 		PageFactory.initElements(driver, this);
 	}
@@ -55,14 +58,14 @@ public class AdDetails extends BaseTest {
 	public boolean clickRadioBtn() {
 		radioBtnFree = new ArrayList();
 		radioBtnFree = driver.findElements(By.xpath("//div//span[@class='radio-label']"));
-		//System.out.println(radioBtnFree.size());
+		// System.out.println(radioBtnFree.size());
 		WebElement free = null;
 		boolean checkLabel;
 		for (WebElement getRadio : radioBtnFree) {
 			// System.out.println(getRadio.getText());
 			if (getRadio.getText().equals("Please Contact")) {
 				if (!(getRadio.isSelected())) {
-					//System.out.println("clicked");
+					// System.out.println("clicked");
 					free = driver.findElement(By.xpath("//div//span[@class='radio-label'and text()='Please Contact']"));
 					WebDriverWait checkBtnClicked = new WebDriverWait(driver, 2000);
 					getRadio.click();
@@ -76,32 +79,41 @@ public class AdDetails extends BaseTest {
 		return checkLabel;
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	public String uploadImage() throws InterruptedException {
 		int x = uploadImgs.getLocation().getX();
 		if (x != 0) {
 			System.out.println(uploadImgs.isDisplayed());
 			((JavascriptExecutor) driver).executeScript("scroll(0,550);");
 			// Thread.sleep(3000);
-			if(SelectorsData.getProperty("courseSelection").equalsIgnoreCase("QA")) {
+			String nameOfSheet = ExcelReader.getActiveSheet();
+			String fromSelector = SelectorsData.getProperty("courseSelectionQA").trim();
+			String fromSelectorBA = SelectorsData.getProperty("courseSelectionBA").trim();
+			String fromSelectorDev = SelectorsData.getProperty("courseSelectionDev").trim();
+			if (nameOfSheet.contentEquals(fromSelector)) {
 				String imgPath = SelectorsData.getProperty("qaImg");
-			    uploadImgs.sendKeys(imgPath);
-			}else if(SelectorsData.getProperty("courseSelection").equalsIgnoreCase("BA")) {
+				uploadImgs.sendKeys(imgPath);
+			} else if (nameOfSheet.contentEquals(fromSelectorBA)) {
 				String imgPath = SelectorsData.getProperty("baImg");
-			    uploadImgs.sendKeys(imgPath);
+				uploadImgs.sendKeys(imgPath);
+			} else if (nameOfSheet.contentEquals(fromSelectorDev)) {
+				String imgPath = SelectorsData.getProperty("devOpsImg");
+				uploadImgs.sendKeys(imgPath);
 			}
 			Thread.sleep(3000);
 		}
 		WebElement imgUploaded = driver
 				.findElement(By.xpath("//li[@class= 'thumbnail selected']//div[@class='image' ]"));
 		String checkImg = imgUploaded.getAttribute("class");
-		//System.out.println(checkImg);
+		// System.out.println(checkImg);
 		return checkImg;
 	}
 
 	public void detailsToEnter(String title, String description, String code) throws InterruptedException {
+
 		this.title.sendKeys(title);
 		this.description.sendKeys(description);
-		//Thread.sleep(2000);
+		// Thread.sleep(2000);
 		boolean checkPath = false;
 		try {
 			if (checkPath = driver.findElement(By.xpath("//select[@name = 'postingLocation']")).isDisplayed()) {
@@ -133,14 +145,16 @@ public class AdDetails extends BaseTest {
 				this.code.sendKeys(getLocation);
 				WebDriverWait wait = new WebDriverWait(driver, 5000);
 				WebElement locationDisplay = driver.findElement(By.xpath("//textarea[@name='location']"));
-				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,SelectorsData.getProperty("mississaugaLocation")));
+				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,
+						SelectorsData.getProperty("mississaugaLocation")));
 			} else if (code.equalsIgnoreCase("L6S")) {
 				String getLocation = SelectorsData.getProperty("bramptonLocation");
 				this.code.clear();
 				this.code.sendKeys(getLocation);
 				WebDriverWait wait = new WebDriverWait(driver, 5000);
 				WebElement locationDisplay = driver.findElement(By.xpath("//textarea[@name='location']"));
-				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,SelectorsData.getProperty("bramptonLocation")));
+				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,
+						SelectorsData.getProperty("bramptonLocation")));
 			}
 		}
 
@@ -168,10 +182,5 @@ public class AdDetails extends BaseTest {
 		}
 		return new CancelPaymentPage();
 	}
-
-	/*
-	 * public DisplayAd adPublished() { //cancelPayment.click(); return new
-	 * DisplayAd(); }
-	 */
 
 }

@@ -36,9 +36,4 @@ public class LogInPage extends BaseTest {
 		return new UserHomePage();
 	}
 
-//	public HomePage homePage() {
-//		signIn.click();
-//		return new HomePage();
-//	}
-
 }

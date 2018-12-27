@@ -17,7 +17,7 @@ public class CancelPaymentPage extends BaseTest {
 
 	public DisplayAd adPublished() {
 		cancelPayment.click();
-		System.out.println("cancelPayment is working");
+	//	System.out.println("cancelPayment is working");
 		return new DisplayAd();
 	}
 

@@ -13,7 +13,7 @@ public class DataConfig {
 	protected static Properties dataProp;
 	
 	private DataConfig() {
-		Path pathData = Paths.get("src","test", "resources", "config", "logIn.properties");
+		Path pathData = Paths.get("src","test", "resources", "config", "testData.properties");
 		try {
 			InputStream inputData = new FileInputStream(pathData.toFile());
 			dataProp = new Properties();

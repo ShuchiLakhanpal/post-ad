@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import upload_advertisment_config.SelectorsData;
 import upload_advertisment_testcases.BaseTest;
 
 public class UserHomePage extends BaseTest {
@@ -29,17 +30,19 @@ public class UserHomePage extends BaseTest {
 
 	public CAndL openClasses() {
 		boolean checkLinkVisible = false;
+		String urlCommunityLink = "";
 		try {
 			if(checkLinkVisible = communityLink.isDisplayed()) {
 				communityLink.click();
 				driver.findElement(By.cssSelector("div#cat-menu-group-1 > ul.menuListL2-1858403043 > li:nth-child(4) > a")).click();
+				//driver.navigate().to("https://www.kijiji.ca/"+ SelectorsData.getProperty("toPostAd"));
 				checkLinkVisible = true;
 			}
 		}catch(Exception e) {
 			e.getMessage();
 		}
 		if(checkLinkVisible = true) {
-			driver.navigate().to("https://www.kijiji.ca/b-classes-lessons/mississauga-peel-region/c4l1700276");
+			driver.navigate().to("https://www.kijiji.ca/"+ SelectorsData.getProperty("toPostAd"));
 		}
 		
 		return new CAndL();
