@@ -7,13 +7,16 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import upload_advertisment_config.DataConfig;
+import upload_advertisment_listeners.ScreenshotListener;
 import upload_advertisment_pageobjects.UserHomePage;
 import upload_advertisment_pageobjects.LogInPage;
 import upload_advertisment_pageobjects.CheckLogIn;
 
+@Listeners(ScreenshotListener.class)
 public class LogInPageTest extends BaseTest {
 
 	CheckLogIn openLogIn;

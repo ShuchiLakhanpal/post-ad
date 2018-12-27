@@ -40,7 +40,7 @@ public class CancelPaymentTest extends BaseTest {
 	@Test(enabled = false)
 	public void cancelPaymentTest() {
 		cancelPaymentPage.adPublished();
-		ExcelReader.getData();
+		//ExcelReader.getData();
 	}
 
 	@AfterTest

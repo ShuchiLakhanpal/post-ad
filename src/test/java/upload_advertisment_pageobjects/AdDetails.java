@@ -49,7 +49,7 @@ public class AdDetails extends BaseTest {
 	@FindBy(xpath = "//a[@class='cancel']")
 	WebElement cancelPayment;
 
-	private int currentSheet;
+	//static int sheets = ExcelReader.getNumberSheets();
 
 	public AdDetails() {
 		PageFactory.initElements(driver, this);

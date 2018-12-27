@@ -22,9 +22,9 @@ public class ExcelReader {
 	boolean checkEmptyCell = true;
 	static int activeSheet = 0;
 	static Workbook wb;
-	static int getNumSheets = 0;
+	public static int getNumSheets = 0;
 
-	public int getNumberSheets() {
+	public static int getNumberSheets() {
 		getNumSheets = wb.getNumberOfSheets();
 		return getNumSheets;
 	}

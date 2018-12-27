@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="450436" started-at="2018-12-27T03:34:29Z" finished-at="2018-12-27T03:41:59Z">
+  <suite name="Default suite" duration-ms="182626" started-at="2018-12-27T08:25:40Z" finished-at="2018-12-27T08:28:43Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="450436" started-at="2018-12-27T03:34:29Z" finished-at="2018-12-27T03:41:59Z">
+    <test name="Default test" duration-ms="182626" started-at="2018-12-27T08:25:40Z" finished-at="2018-12-27T08:28:43Z">
       <class name="upload_advertisment_testcases.AdDetailsTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@cd3fee8]" name="setUp" is-config="true" duration-ms="48190" started-at="2018-12-26T22:35:14Z" finished-at="2018-12-26T22:36:02Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@2a5ca609]" name="setUp" is-config="true" duration-ms="29180" started-at="2018-12-27T03:25:41Z" finished-at="2018-12-27T03:26:10Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="clickFreeRadioBtn(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@cd3fee8]" name="clickFreeRadioBtn" duration-ms="64588" started-at="2018-12-26T22:36:02Z" data-provider="fillFields" finished-at="2018-12-26T22:37:07Z">
+        <test-method status="PASS" signature="clickFreeRadioBtn(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@2a5ca609]" name="clickFreeRadioBtn" duration-ms="18024" started-at="2018-12-27T03:26:10Z" data-provider="fillFields" finished-at="2018-12-27T03:26:28Z">
           <params>
             <param index="0">
               <value>
@@ -70,11 +70,11 @@ TRANSFORM CAREER TRANSFORM LIFE]]>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clickFreeRadioBtn -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@cd3fee8]" name="setUp" is-config="true" duration-ms="47866" started-at="2018-12-26T22:37:26Z" finished-at="2018-12-26T22:38:14Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@2a5ca609]" name="setUp" is-config="true" duration-ms="20844" started-at="2018-12-27T03:26:28Z" finished-at="2018-12-27T03:26:49Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="clickFreeRadioBtn(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@cd3fee8]" name="clickFreeRadioBtn" duration-ms="100452" started-at="2018-12-26T22:38:14Z" data-provider="fillFields" finished-at="2018-12-26T22:39:55Z">
+        <test-method status="PASS" signature="clickFreeRadioBtn(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@2a5ca609]" name="clickFreeRadioBtn" duration-ms="46554" started-at="2018-12-27T03:26:49Z" data-provider="fillFields" finished-at="2018-12-27T03:27:35Z">
           <params>
             <param index="0">
               <value>
@@ -162,11 +162,11 @@ Training, Pragra CBAP Training, Pragra Business Analysis Training
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clickFreeRadioBtn -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@cd3fee8]" name="setUp" is-config="true" duration-ms="32938" started-at="2018-12-26T22:40:12Z" finished-at="2018-12-26T22:40:45Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@2a5ca609]" name="setUp" is-config="true" duration-ms="45269" started-at="2018-12-27T03:27:35Z" finished-at="2018-12-27T03:28:21Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="clickFreeRadioBtn(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@cd3fee8]" name="clickFreeRadioBtn" duration-ms="73113" started-at="2018-12-26T22:40:45Z" data-provider="fillFields" finished-at="2018-12-26T22:41:58Z">
+        <test-method status="PASS" signature="clickFreeRadioBtn(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@2a5ca609]" name="clickFreeRadioBtn" duration-ms="21510" started-at="2018-12-27T03:28:21Z" data-provider="fillFields" finished-at="2018-12-27T03:28:42Z">
           <params>
             <param index="0">
               <value>
@@ -222,7 +222,7 @@ TRANSFORM CAREER TRANSFORM LIFE]]>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clickFreeRadioBtn -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@cd3fee8]" name="tearDown" is-config="true" duration-ms="969" started-at="2018-12-26T22:41:58Z" finished-at="2018-12-26T22:41:59Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:upload_advertisment_testcases.AdDetailsTest@2a5ca609]" name="tearDown" is-config="true" duration-ms="792" started-at="2018-12-27T03:28:42Z" finished-at="2018-12-27T03:28:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

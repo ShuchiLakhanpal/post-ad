@@ -1,20 +1,18 @@
 package upload_advertisment_testcases;
 
 import java.util.Iterator;
-import java.util.ListIterator;
 
-import org.apache.poi.ss.usermodel.Row;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import upload_advertisment_config.DataConfig;
 import upload_advertisment_config.SelectorsData;
 import upload_advertisment_excelreader.ExcelReader;
+import upload_advertisment_listeners.ScreenshotListener;
 import upload_advertisment_pageobjects.AdDetails;
 import upload_advertisment_pageobjects.CAndL;
 import upload_advertisment_pageobjects.CancelPaymentPage;
@@ -22,6 +20,7 @@ import upload_advertisment_pageobjects.CheckLogIn;
 import upload_advertisment_pageobjects.LogInPage;
 import upload_advertisment_pageobjects.UserHomePage;
 
+@Listeners(ScreenshotListener.class)
 public class AdDetailsTest extends BaseTest {
 
 	CheckLogIn openLogIn;
@@ -31,7 +30,7 @@ public class AdDetailsTest extends BaseTest {
 	AdDetails adDetails;
 	static ExcelReader reader;
 	CancelPaymentPage cancelPayment;
-	static int currentSheet = 0;
+	public static int currentSheet;
 
 	@BeforeMethod
 	public void setUp() {
@@ -47,7 +46,7 @@ public class AdDetailsTest extends BaseTest {
 
 	}
 
-	@Test(dataProvider = "fillFields", invocationCount = 3)
+	@Test(dataProvider = "fillFields", invocationCount = 3) // invocationCount should be equivalent to number of sheets
 	public void clickFreeRadioBtn(String getTitle, String getDescription, String getCode) throws InterruptedException {
 		boolean verifyBtn = adDetails.clickRadioBtn();
 		Assert.assertTrue(verifyBtn, "Btn Match");
@@ -64,10 +63,19 @@ public class AdDetailsTest extends BaseTest {
 
 		adDetails.selectDays();
 
-		adDetails.clickPostAd();
-		
 		currentSheet++;
-		
+
+		adDetails.clickPostAd();
+
+		if (ExcelReader.getNumSheets == 1) {
+			System.out.println("Number of sheets is 1 ");
+			driver.close();
+		} else if (currentSheet > 0 && currentSheet == ExcelReader.getNumSheets) {
+			// currentSheet++;
+
+			ExcelReader.getData();
+		}
+
 		cancelPayment.adPublished();
 	}
 

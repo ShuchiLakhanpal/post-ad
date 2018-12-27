@@ -29,10 +29,13 @@ public class LogInPage extends BaseTest {
 	}
 
 	public UserHomePage userDetails(String userEmail, String userPassword) {
-		// Thread.sleep(2000);
-		email.sendKeys(userEmail);
-		password.sendKeys(userPassword);
-		signIn.click();
+		try {
+			email.sendKeys(userEmail);
+			password.sendKeys(userPassword);
+			signIn.click();
+		} catch (Exception e) {
+			e.getMessage();
+		}
 		return new UserHomePage();
 	}
 

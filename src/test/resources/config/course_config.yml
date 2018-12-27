@@ -1,6 +1,7 @@
 courseExcelFile:
+   #filename = ./src/test/resources/testdata/Copy of PragraAdvertisement.xlsx
    filename = ./src/test/resources/testdata/PragraAdvertisement.xlsx
-   sheetNum = 2
+  # sheetNum = 2
    
 location:
   # checkMississaugaLocation = //div[@class='autocompleteSuggestions-3802522726']//div[text()='Mississauga, ON L5M']
