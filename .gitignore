@@ -1,4 +1,4 @@
-/src/main/java
+src/main/java
 target/
-/src/main/resources/
+src/main/resources/
 test-output/
