@@ -1,11 +1,15 @@
 package upload_advertisment_pageobjects;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -16,6 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import upload_advertisment_config.SelectorsData;
 import upload_advertisment_excelreader.ExcelReader;
 import upload_advertisment_testcases.BaseTest;
+import upload_advertisment_utils.Utility;
 
 public class AdDetails extends BaseTest {
 
@@ -24,12 +29,12 @@ public class AdDetails extends BaseTest {
 
 	@FindBy(how = How.XPATH, using = "//div//span[@class='radio-label']")
 	List<WebElement> radioBtnFree;
-	/*
-	 * @FindBy(xpath="//label//span[@class = 'radio-label' and text()= 'Free']")
-	 * WebElement radioBtnFree;
-	 */
-	@FindBy(how = How.XPATH, using = "//div//input[@type='file']")
+
+	@FindBy(how = How.XPATH, using = "//input[@type='file']")
 	WebElement uploadImgs;
+	// @FindAll(@FindBy(how = How.XPATH, using =
+	// "//ol[@id='MediaUploadedImages']//li"))
+	// List<WebElement> uploadImgs;
 
 	@FindBy(how = How.ID, using = "postad-title")
 	WebElement title;
@@ -49,8 +54,8 @@ public class AdDetails extends BaseTest {
 	@FindBy(xpath = "//a[@class='cancel']")
 	WebElement cancelPayment;
 
-	//static int sheets = ExcelReader.getNumberSheets();
-
+	static String pathFile = SelectorsData.getProperty("staticPath");
+			
 	public AdDetails() {
 		PageFactory.initElements(driver, this);
 	}
@@ -83,24 +88,28 @@ public class AdDetails extends BaseTest {
 	public String uploadImage() throws InterruptedException {
 		int x = uploadImgs.getLocation().getX();
 		if (x != 0) {
-			System.out.println(uploadImgs.isDisplayed());
-			((JavascriptExecutor) driver).executeScript("scroll(0,550);");
+			//System.out.println(uploadImgs.isDisplayed());
+			((JavascriptExecutor) driver).executeScript("scroll(0,650);");
 			// Thread.sleep(3000);
 			String nameOfSheet = ExcelReader.getActiveSheet();
+			System.out.println(nameOfSheet);
 			String fromSelector = SelectorsData.getProperty("courseSelectionQA").trim();
 			String fromSelectorBA = SelectorsData.getProperty("courseSelectionBA").trim();
 			String fromSelectorDev = SelectorsData.getProperty("courseSelectionDev").trim();
+
+
+			driver.findElement(By.id("ImageUploadButton")).click();
+			//folder name should be similar to pathFile + courseSelectionName.toLowerCase() + "Images" so that the following code works		
+
 			if (nameOfSheet.contentEquals(fromSelector)) {
-				String imgPath = SelectorsData.getProperty("qaImg");
-				uploadImgs.sendKeys(imgPath);
+				System.out.println(pathFile + fromSelector.toLowerCase() + "Images");
+				Utility.uploadFiles(pathFile + fromSelector.toLowerCase() + "Images");
 			} else if (nameOfSheet.contentEquals(fromSelectorBA)) {
-				String imgPath = SelectorsData.getProperty("baImg");
-				uploadImgs.sendKeys(imgPath);
+				Utility.uploadFiles(pathFile + fromSelectorBA.toLowerCase() + "Images");
 			} else if (nameOfSheet.contentEquals(fromSelectorDev)) {
-				String imgPath = SelectorsData.getProperty("devOpsImg");
-				uploadImgs.sendKeys(imgPath);
+				Utility.uploadFiles(pathFile + fromSelectorDev.toLowerCase() + "Images");
 			}
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 		}
 		WebElement imgUploaded = driver
 				.findElement(By.xpath("//li[@class= 'thumbnail selected']//div[@class='image' ]"));
@@ -110,7 +119,7 @@ public class AdDetails extends BaseTest {
 	}
 
 	public void detailsToEnter(String title, String description, String code) throws InterruptedException {
-
+		Thread.sleep(30000);
 		this.title.sendKeys(title);
 		this.description.sendKeys(description);
 		// Thread.sleep(2000);
@@ -178,6 +187,7 @@ public class AdDetails extends BaseTest {
 	public CancelPaymentPage clickPostAd() {
 		int x = postAd.getLocation().getX();
 		if (x != 0) {
+	//		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
 			postAd.click();
 		}
 		return new CancelPaymentPage();

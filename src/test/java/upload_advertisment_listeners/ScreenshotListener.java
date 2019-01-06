@@ -36,13 +36,13 @@ public class ScreenshotListener implements ITestListener{
 	@Override
 	public void onTestFailure(ITestResult result) {
 		WebDriver driver = DriverManager.getInstance();
-		Path path = Paths.get("target", "screenshot");
 		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		Path path = Paths.get("target", "screenshot");
 		//InputStream d = FileInputStream(path.toAbsolutePath());
 		
 		try {
-			Files.createDirectory(path.toAbsolutePath());
-			FileUtils.copyDirectory(screenshot, new File(path.toString() +"/", Utility.getDate(result.getTestName())));
+			Files.createDirectories(path.toAbsolutePath());
+			FileUtils.copyFile(screenshot, new File(path.toString() +"/", Utility.getDate(result.getName())));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

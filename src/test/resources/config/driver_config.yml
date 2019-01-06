@@ -5,19 +5,6 @@ browser:
    type= chrome
    url= https://www.kijiji.ca
    
-#location:
-  # checkMississaugaLocation = //div[@class='autocompleteSuggestions-3802522726']//div[text()='Mississauga, ON L5M']
-  # checkBramptonLocation= //div[@class='autocompleteSuggestions-3802522726']//div[text()='Brampton, ON L6S 3E3']
-#   mississaugaLocation = Mississauga, ON L5M
-#   bramptonLocation= Brampton, ON L6S 3E3
-
-#course:
-#   courseSelection = QA
-      
-#courses:
-#   courseQA = QA
-#   courseBA = BA
-   
-#imgPath:
-#   qaImg = C:/Users/shuchi/Desktop/kijiji_automation/Ad Images/www.PRAGRA.co.png
-#   baImg = C:/Users/shuchi/Desktop/kijiji_automation/Ad Images/Business Analysis.jpg
+autoIT:
+   getFolderPath=C:/Users/shuchi/AutoIT/getFolder.exe
+   addFilesPath=C:/Users/shuchi/AutoIT/FileUpload.exe

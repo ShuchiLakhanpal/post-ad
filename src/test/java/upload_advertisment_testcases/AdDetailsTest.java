@@ -1,6 +1,7 @@
 package upload_advertisment_testcases;
 
 import java.util.Iterator;
+import java.util.concurrent.TimeUnit;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -51,7 +52,6 @@ public class AdDetailsTest extends BaseTest {
 		boolean verifyBtn = adDetails.clickRadioBtn();
 		Assert.assertTrue(verifyBtn, "Btn Match");
 		Thread.sleep(3000);
-
 		String verifyImg = adDetails.uploadImage();
 		String classDisplayed = "image";
 		Assert.assertEquals(verifyImg, classDisplayed, "not same");
@@ -64,14 +64,15 @@ public class AdDetailsTest extends BaseTest {
 		adDetails.selectDays();
 
 		currentSheet++;
-
+	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		adDetails.clickPostAd();
 
 		if (ExcelReader.getNumSheets == 1) {
 			System.out.println("Number of sheets is 1 ");
 			driver.close();
 		} else if (currentSheet > 0 && currentSheet == ExcelReader.getNumSheets) {
-			// currentSheet++;
+			 currentSheet++;
 
 			ExcelReader.getData();
 		}
@@ -82,11 +83,11 @@ public class AdDetailsTest extends BaseTest {
 	@DataProvider(name = "fillFields")
 	public Iterator<Object[]> enterDataDetailsTest() {
 		reader = new ExcelReader(SelectorsData.getProperty("filename"), currentSheet);
-		// currentSheet = ExcelReader.getActiveSheet();
+		//ExcelReader.getNumberSheets();
 		return ExcelReader.getData().iterator();
 	}
 
-	@AfterTest
+	@AfterTest(enabled = true)
 	public void tearDown() {
 
 		driver.quit();
