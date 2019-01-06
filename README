@@ -1,1 +1,4 @@
 mvn -Dtest=AdDetailsTest test
+In AdDetailsTest.java, method "public void clickFreeRadioBtn" should change the invocationCount equal to the number of sheets to be uploaded
+in the @Test annotation
+In AdDetails.java, Thread.sleep(30000) in public void detailsToEnter method should be changed for successful upload of images.
