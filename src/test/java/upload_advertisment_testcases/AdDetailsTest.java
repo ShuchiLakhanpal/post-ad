@@ -65,19 +65,18 @@ public class AdDetailsTest extends BaseTest {
 
 		currentSheet++;
 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		adDetails.clickPostAd();
+		//adDetails.clickPostAd();
 
 		if (ExcelReader.getNumSheets == 1) {
 			System.out.println("Number of sheets is 1 ");
 			driver.close();
 		} else if (currentSheet > 0 && currentSheet == ExcelReader.getNumSheets) {
-			 currentSheet++;
+			 //currentSheet++;
 
 			ExcelReader.getData();
 		}
 
-		cancelPayment.adPublished();
+		//cancelPayment.adPublished();
 	}
 
 	@DataProvider(name = "fillFields")

@@ -101,6 +101,7 @@ public class AdDetails extends BaseTest {
 			driver.findElement(By.id("ImageUploadButton")).click();
 			//folder name should be similar to pathFile + courseSelectionName.toLowerCase() + "Images" so that the following code works		
 
+
 			if (nameOfSheet.contentEquals(fromSelector)) {
 				System.out.println(pathFile + fromSelector.toLowerCase() + "Images");
 				Utility.uploadFiles(pathFile + fromSelector.toLowerCase() + "Images");

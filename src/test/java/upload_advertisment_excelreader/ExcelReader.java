@@ -24,11 +24,11 @@ public class ExcelReader {
 	static Workbook wb;
 	public static int getNumSheets = 0;
 
-	/*public static int getNumberSheets() {
+	public static int getNumberSheets() {
 		getNumSheets = wb.getNumberOfSheets();
 		System.out.println(getNumSheets);
 		return getNumSheets;
-	}*/
+	}
 
 	public ExcelReader(String fileName, int activeSheet) {
 		this.fileName = fileName;
