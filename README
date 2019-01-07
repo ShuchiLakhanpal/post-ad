@@ -1,4 +1,6 @@
 mvn -Dtest=AdDetailsTest test
+mvn -DTest=AdDetailsTest -Dmaven.surefire.debug test
+Run Debug Configurations in eclipse and set up java remote application on port 5005.Run configuration.
 Download AutoIt and script editor for uploading multiple files
 
 FistFile and SecondFile are in Utility.java class to upload files
