@@ -1,1 +1,26 @@
 mvn -Dtest=AdDetailsTest test
+mvn -DTest=AdDetailsTest -Dmaven.surefire.debug test
+Run Debug Configurations in eclipse and set up java remote application on port 5005.Run configuration.
+Download AutoIt and script editor for uploading multiple files
+
+FistFile and SecondFile are in Utility.java class to upload files
+
+FirstFile: getFolder.au3 has script:
+$window_name = "Open"
+ControlFocus($window_name,"","Edit1")
+ControlSetText($window_name,"", "Edit1", $CmdLineRaw)
+Sleep(4000)
+Send("{Enter}")
+
+SecondFile: FileUpload.au3 contains script:
+$window_name = "Open"
+ControlFocus($window_name,"","Edit1")
+ControlSetText($window_name,"", "Edit1", $CmdLineRaw)
+Sleep(5000)
+ControlClick($window_name,"","Button1")
+
+In AdDetails.java, Thread.sleep(30000) in public void detailsToEnter method should be changed for successful upload of images.
+
+In AdDetailsTest.java, method "public void clickFreeRadioBtn" should change the invocationCount equal to the number of sheets to be uploaded
+in the @Test annotation
+
