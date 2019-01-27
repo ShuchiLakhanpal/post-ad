@@ -17,49 +17,47 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelReader {
 
-	private static List<Object[]> testData;
+	private static List<List<Object[]>> testData;
+	public static List<Object[]> sheetData;
 	private String fileName;
 	boolean checkEmptyCell = true;
+	public static Workbook wb;
 	static int activeSheet = 0;
-	static Workbook wb;
-	public static int getNumSheets = 0;
 
-	public static int getNumberSheets() {
-		getNumSheets = wb.getNumberOfSheets();
-		System.out.println(getNumSheets);
-		return getNumSheets;
-	}
-
-	public ExcelReader(String fileName, int activeSheet) {
+	public ExcelReader(String fileName) {
 		this.fileName = fileName;
-		this.testData = new ArrayList<>();
-		this.activeSheet = activeSheet;
+		this.testData = new ArrayList<List<Object[]>>();
 		try {
 			FileInputStream inputFile = new FileInputStream(new File(fileName));
 			wb = new XSSFWorkbook(inputFile);
-			// for (int i = 0; i < wb.getNumberOfSheets(); i++) {
-			Sheet dataSheet = wb.getSheetAt(activeSheet);
-			activeSheet = wb.getActiveSheetIndex();
-			Iterator<Row> getRow = dataSheet.iterator();
-			getRow.next();
-			while (getRow.hasNext()) {
-				Row getCurrentRow = getRow.next();
-				Iterator<Cell> cells = getCurrentRow.iterator();
-				List<String> dataCell = new ArrayList<>();
-				while (cells.hasNext()) {
-					Cell currentCell = cells.next();
-					// System.out.println(currentCell.getStringCellValue());
-					dataCell.add(currentCell.getStringCellValue());
-					if (currentCell.getStringCellValue().isEmpty()) {
-						checkEmptyCell = false;
+			for (int i = 0; i < wb.getNumberOfSheets(); i++) {
+				sheetData = new ArrayList<>();
+				Sheet dataSheet = wb.getSheetAt(i);
+				Iterator<Row> getRow = dataSheet.iterator();
+
+				getRow.next();
+				while (getRow.hasNext()) {
+					Row getCurrentRow = getRow.next();
+					//	System.out.println(dataSheet.getLastRowNum());
+					Iterator<Cell> cells = getCurrentRow.iterator();
+					List<String> dataCell = new ArrayList<>();
+					while (cells.hasNext()) {
+						Cell currentCell = cells.next();
+
+						dataCell.add(currentCell.getStringCellValue());
+						if (currentCell.getStringCellValue().isEmpty()) {
+							checkEmptyCell = false;
+							//getRow.next();
+						}
+					}
+
+					if (checkEmptyCell == true) {
+						sheetData.add(dataCell.toArray());
 					}
 				}
+				testData.add(sheetData);
 
-				if (checkEmptyCell == true) {
-					testData.add(dataCell.toArray());
-				}
 			}
-
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found");
 			e.printStackTrace();
@@ -70,8 +68,9 @@ public class ExcelReader {
 
 	}
 
-	public static List<Object[]> getData() {
-		return testData;
+	public static List<Object[]> getData(int currSheet) {
+		List<Object[]> list = testData.get(currSheet);
+		return list;
 	}
 
 	public static String getActiveSheet() {

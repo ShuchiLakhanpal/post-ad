@@ -1,35 +1,34 @@
 courseExcelFile:
-  # filename = ./src/test/resources/testdata/Copy of PragraAdvertisement.xlsx
-   filename = ./src/test/resources/testdata/PragraAdvertisement.xlsx
-  # sheetNum = 2
+  # filename = ./src/test/resources/testdata/PragraAdvertisement.xlsx
+   filename= ./src/test/resources/testdata/PragraAdvertisement_MultiRows.xlsx
+ 
    
 location:
   # checkMississaugaLocation = //div[@class='autocompleteSuggestions-3802522726']//div[text()='Mississauga, ON L5M']
   # checkBramptonLocation= //div[@class='autocompleteSuggestions-3802522726']//div[text()='Brampton, ON L6S 3E3']
-   mississaugaLocation = Mississauga, ON L5M
-   bramptonLocation= Brampton, ON L6S 3E3
+  # mississaugaLocation = Mississauga, ON L5M
+  # bramptonLocation= Brampton, ON L6S 3E3
 
 course:
     courseSelectionDev = DevOps
     courseSelectionBA = BA
-    courseSelectionQA=QA  
+    courseSelectionQA = QA 
+    courseSelectionAWS = AWS
+    courseSelectionML = ML
 courses:
-   courseQA = QA
-   courseBA = BA
+   #courseQA = QA
+   #courseBA = BA
+
 fixPath: 
    staticPath = C:/Users/shuchi/
-   #+{courseSelection.toLowerCase+"Images"}  
+   
     
 pathImages:
-   qaImg = C:/Users/shuchi/Desktop/kijiji_automation/Ad Images/www.PRAGRA.co (1).png
-   qaImg1 = C:/Users/shuchi/Desktop/kijiji_automation/Ad Images/QA Auto.png
-   baImg = C:/Users/shuchi/Desktop/kijiji_automation/Ad Images/Business Analysis.jpg
-   devOpsImg = C:/Users/shuchi/Desktop/kijiji_automation/Ad Images/DOE.png
    
-   pathFull = C:/Users/shuchi/qaImages C:/Users/shuchi/baImages C:/Users/shuchi/devOpsImages  
-   pathFile = C:/Users/shuchi/qaImages
-   pathFileDev = C:/Users/shuchi/devOpsImages
-   pathFileBA = C:/Users/shuchi/baImages
+  # pathFull = C:/Users/shuchi/qaImages C:/Users/shuchi/baImages C:/Users/shuchi/devOpsImages  
+  # pathFile = C:/Users/shuchi/qaImages
+  # pathFileDev = C:/Users/shuchi/devOpsImages
+  # pathFileBA = C:/Users/shuchi/baImages
    
 url:
   toPostAd = b-classes-lessons/mississauga-peel-region/c4l1700276;

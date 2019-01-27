@@ -29,9 +29,10 @@ public class AdDetailsTest extends BaseTest {
 	UserHomePage homePage;
 	CAndL cAndL;
 	AdDetails adDetails;
-	static ExcelReader reader;
+	static ExcelReader reader = new ExcelReader(SelectorsData.getProperty("filename"));
 	CancelPaymentPage cancelPayment;
 	public static int currentSheet;
+	public static int currSheet = -1;
 
 	@BeforeMethod
 	public void setUp() {
@@ -47,48 +48,32 @@ public class AdDetailsTest extends BaseTest {
 
 	}
 
-	@Test(dataProvider = "fillFields", invocationCount = 3) // invocationCount should be equivalent to number of sheets
+	@Test(dataProvider = "fillFields", invocationCount = 1) // invocationCount should be equivalent to number of sheets
 	public void clickFreeRadioBtn(String getTitle, String getDescription, String getCode) throws InterruptedException {
 		boolean verifyBtn = adDetails.clickRadioBtn();
-		Assert.assertTrue(verifyBtn, "Btn Match");
-		Thread.sleep(3000);
-		String verifyImg = adDetails.uploadImage();
-		String classDisplayed = "image";
-		Assert.assertEquals(verifyImg, classDisplayed, "not same");
+		//Thread.sleep(3000);
+		//String verifyImg = adDetails.uploadImage();
 
 		adDetails.detailsToEnter(getTitle, getDescription, getCode);
 
 		adDetails.clickCheckBox();
-		// Assert.a
 
 		adDetails.selectDays();
-
-		currentSheet++;
-	
+		
 		adDetails.clickPostAd();
-
-		if (ExcelReader.getNumSheets == 1) {
-			System.out.println("Number of sheets is 1 ");
-			driver.close();
-		} else if (currentSheet > 0 && currentSheet == ExcelReader.getNumSheets) {
-			 
-
-			ExcelReader.getData();
-		}
 
 		cancelPayment.adPublished();
 	}
 
 	@DataProvider(name = "fillFields")
 	public Iterator<Object[]> enterDataDetailsTest() {
-		reader = new ExcelReader(SelectorsData.getProperty("filename"), currentSheet);
-		//ExcelReader.getNumberSheets();
-		return ExcelReader.getData().iterator();
+		currSheet++;
+		//System.out.println("current sheet"+ currSheet);
+		return ExcelReader.getData(currSheet).iterator();
 	}
 
 	@AfterTest(enabled = true)
 	public void tearDown() {
-
 		driver.quit();
 	}
 }

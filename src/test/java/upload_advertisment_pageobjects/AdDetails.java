@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +26,6 @@ import upload_advertisment_utils.Utility;
 public class AdDetails extends BaseTest {
 
 	JavascriptExecutor js = (JavascriptExecutor) driver;
-	static ExcelReader reader;
 
 	@FindBy(how = How.XPATH, using = "//div//span[@class='radio-label']")
 	List<WebElement> radioBtnFree;
@@ -55,7 +55,7 @@ public class AdDetails extends BaseTest {
 	WebElement cancelPayment;
 
 	static String pathFile = SelectorsData.getProperty("staticPath");
-			
+
 	public AdDetails() {
 		PageFactory.initElements(driver, this);
 	}
@@ -84,24 +84,25 @@ public class AdDetails extends BaseTest {
 		return checkLabel;
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
+	/*@SuppressWarnings("unlikely-arg-type")
+	 * uses Auto it script for execution to upload multiple images
 	public String uploadImage() throws InterruptedException {
 		int x = uploadImgs.getLocation().getX();
 		if (x != 0) {
-			//System.out.println(uploadImgs.isDisplayed());
+			// System.out.println(uploadImgs.isDisplayed());
 			((JavascriptExecutor) driver).executeScript("scroll(0,650);");
 			// Thread.sleep(3000);
 			String nameOfSheet = ExcelReader.getActiveSheet();
-			System.out.println(nameOfSheet);
+			// System.out.println(nameOfSheet);
 			String fromSelector = SelectorsData.getProperty("courseSelectionQA").trim();
 			String fromSelectorBA = SelectorsData.getProperty("courseSelectionBA").trim();
 			String fromSelectorDev = SelectorsData.getProperty("courseSelectionDev").trim();
-
+			String fromSelectorAWS = SelectorsData.getProperty("courseSelectionAWS").trim();
+			String fromSelectorML = SelectorsData.getProperty("courseSelectionML").trim();
 
 			driver.findElement(By.id("ImageUploadButton")).click();
-			//folder name should be similar to pathFile + courseSelectionName.toLowerCase() + "Images" so that the following code works		
-
-
+			// folder name should be similar to pathFile + courseSelectionName.toLowerCase()
+			// + "Images" so that the following code works
 			if (nameOfSheet.contentEquals(fromSelector)) {
 				System.out.println(pathFile + fromSelector.toLowerCase() + "Images");
 				Utility.uploadFiles(pathFile + fromSelector.toLowerCase() + "Images");
@@ -109,6 +110,10 @@ public class AdDetails extends BaseTest {
 				Utility.uploadFiles(pathFile + fromSelectorBA.toLowerCase() + "Images");
 			} else if (nameOfSheet.contentEquals(fromSelectorDev)) {
 				Utility.uploadFiles(pathFile + fromSelectorDev.toLowerCase() + "Images");
+			}else if (nameOfSheet.contentEquals(fromSelectorAWS)) {
+				Utility.uploadFiles(pathFile + fromSelectorAWS.toLowerCase() + "Images");
+			}else if (nameOfSheet.contentEquals(fromSelectorML)) {
+				Utility.uploadFiles(pathFile + fromSelectorML.toLowerCase() + "Images");
 			}
 			Thread.sleep(1000);
 		}
@@ -118,15 +123,16 @@ public class AdDetails extends BaseTest {
 		// System.out.println(checkImg);
 		return checkImg;
 	}
-
+*/
+	
+	
 	public void detailsToEnter(String title, String description, String code) throws InterruptedException {
-		Thread.sleep(30000);
 		this.title.sendKeys(title);
 		this.description.sendKeys(description);
-		// Thread.sleep(2000);
 		boolean checkPath = false;
 		try {
 			if (checkPath = driver.findElement(By.xpath("//select[@name = 'postingLocation']")).isDisplayed()) {
+				System.out.println(checkPath);
 				checkPath = true;
 			}
 		} catch (Exception e) {
@@ -137,37 +143,19 @@ public class AdDetails extends BaseTest {
 			driver.findElement(By.xpath("//button[text()='Change']")).click();
 			this.code.clear();
 			this.code.sendKeys(code);
-
-			if (code.equalsIgnoreCase("L5M")) {
-				String getLocation = SelectorsData.getProperty("mississaugaLocation");
-				this.code.clear();
-				this.code.sendKeys(getLocation);
-			} else if (code.equalsIgnoreCase("L6S")) {
-				String getLocation = SelectorsData.getProperty("bramptonLocation");
-				this.code.clear();
-				this.code.sendKeys(getLocation);
-			}
-		} else if (driver.findElement(By.xpath("//h3[text() = 'Location']")).isDisplayed()) {
+			WebDriverWait wait = new WebDriverWait(driver, 20);
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("downshift-0-item-0")));
+				driver.findElement(By.id("downshift-0-item-0")).click();
+			//System.out.println(code);
+		} else if (checkPath == false) {
 			js.executeScript("scroll(0, 1100);");
-			if (code.equalsIgnoreCase("L5M")) {
-				String getLocation = SelectorsData.getProperty("mississaugaLocation");
-				this.code.clear();
-				this.code.sendKeys(getLocation);
-				WebDriverWait wait = new WebDriverWait(driver, 5000);
-				WebElement locationDisplay = driver.findElement(By.xpath("//textarea[@name='location']"));
-				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,
-						SelectorsData.getProperty("mississaugaLocation")));
-			} else if (code.equalsIgnoreCase("L6S")) {
-				String getLocation = SelectorsData.getProperty("bramptonLocation");
-				this.code.clear();
-				this.code.sendKeys(getLocation);
-				WebDriverWait wait = new WebDriverWait(driver, 5000);
-				WebElement locationDisplay = driver.findElement(By.xpath("//textarea[@name='location']"));
-				wait.until(ExpectedConditions.textToBePresentInElement(locationDisplay,
-						SelectorsData.getProperty("bramptonLocation")));
-			}
+			this.code.clear();
+			this.code.sendKeys(code);
+			WebDriverWait wait = new WebDriverWait(driver, 20);
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("downshift-0-item-0")));
+				driver.findElement(By.id("downshift-0-item-0")).click();
+			//System.out.println(code);
 		}
-
 	}
 
 	public void clickCheckBox() {
@@ -188,7 +176,6 @@ public class AdDetails extends BaseTest {
 	public CancelPaymentPage clickPostAd() {
 		int x = postAd.getLocation().getX();
 		if (x != 0) {
-	//		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
 			postAd.click();
 		}
 		return new CancelPaymentPage();
